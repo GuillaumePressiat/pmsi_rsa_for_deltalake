@@ -3122,7 +3122,8 @@ vertical-align: -.125em;
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>              mois   <span class="op">=</span> <span class="dv">12</span>,</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>              path   <span class="op">=</span> <span class="st">&#39;/Users/guillaumepressiat/Documents/data/mco&#39;</span>)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>param_n_max <span class="op">=</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#param_n_max = 1000</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>param_n_max <span class="op">=</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="fonctions-utiles" class="level2">
@@ -3290,8 +3291,8 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>count_pivot_periode(<span class="st">&#39;rsa@rsa&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 136 ms, sys: 30.3 ms, total: 166 ms
-Wall time: 54.3 ms</code></pre>
+<pre><code>CPU times: user 134 ms, sys: 29.7 ms, total: 164 ms
+Wall time: 53.9 ms</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div><style>
@@ -3510,8 +3511,8 @@ white-space: pre-wrap;
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>count_pivot_periode(<span class="st">&#39;rsa@rsa_um&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 139 ms, sys: 23.7 ms, total: 163 ms
-Wall time: 50.6 ms</code></pre>
+<pre><code>CPU times: user 141 ms, sys: 26.3 ms, total: 167 ms
+Wall time: 54.3 ms</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div><style>
@@ -3730,8 +3731,8 @@ white-space: pre-wrap;
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>count_pivot_periode(<span class="st">&#39;rsa@actes&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 407 ms, sys: 66.7 ms, total: 473 ms
-Wall time: 133 ms</code></pre>
+<pre><code>CPU times: user 416 ms, sys: 75.1 ms, total: 491 ms
+Wall time: 143 ms</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div><style>
@@ -3950,8 +3951,8 @@ white-space: pre-wrap;
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>count_pivot_periode(<span class="st">&#39;rsa@diags&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 748 ms, sys: 183 ms, total: 931 ms
-Wall time: 259 ms</code></pre>
+<pre><code>CPU times: user 747 ms, sys: 201 ms, total: 948 ms
+Wall time: 272 ms</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div><style>
@@ -4169,34 +4170,458 @@ white-space: pre-wrap;
 </section>
 <section id="update-delete-de-lannée-en-cours" class="level2">
 <h2 class="anchored" data-anchor-id="update-delete-de-lannée-en-cours">Update (delete de l’année en cours)</h2>
-<p>On passe à pyspark pour pouvoir lancer des delete dans les fichiers delta lake (il faut installer un java)</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># .noeval </span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>builder <span class="op">=</span> pyspark.sql.SparkSession.builder.appName(<span class="st">&quot;MyPmsiDLake&quot;</span>) <span class="op">\</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    .config(<span class="st">&quot;spark.sql.extensions&quot;</span>, <span class="st">&quot;io.delta.sql.DeltaSparkSessionExtension&quot;</span>) <span class="op">\</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    .config(<span class="st">&quot;spark.sql.catalog.spark_catalog&quot;</span>, <span class="st">&quot;org.apache.spark.sql.delta.catalog.DeltaCatalog&quot;</span>)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>spark <span class="op">=</span> configure_spark_with_delta_pip(builder).getOrCreate()</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/a/24657630/10527496</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/questions/70192980/error-creating-sparkcontext-locally-an-error-occurred-while-calling-none-org-apa</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>annee_delete <span class="op">=</span> <span class="st">&#39;2023&#39;</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>string_delete <span class="op">=</span> <span class="st">&quot;ansor = </span><span class="ch">\&quot;</span><span class="st">&quot;</span> <span class="op">+</span> annee_delete <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\&quot;</span><span class="st">&quot;</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>string_delete</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># string_delete = &quot;ansor is NULL&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<p>On passe à pyspark pour pouvoir lancer des delete dans les fichiers delta lake (il faut installer un java, d’une certaine version, pour que cela fonctionne correctement `</p>
+<p>avec quelque chose comme :</p>
+<pre><code>export JAVA_HOME=`/usr/libexec/java_home -v 1.8`</code></pre>
+<div class="cell" data-scrolled="true" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyspark.sql <span class="im">import</span> SparkSession</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#from pyspark import SparkContext</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SparkContext.setSystemProperty(&#39;spark.executor.memory&#39;, &#39;4g&#39;)</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>builder <span class="op">=</span> pyspark.sql.SparkSession.builder.appName(<span class="st">&quot;MyPmsiDLake&quot;</span>) <span class="op">\</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    .config(<span class="st">&quot;spark.sql.extensions&quot;</span>, <span class="st">&quot;io.delta.sql.DeltaSparkSessionExtension&quot;</span>) <span class="op">\</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    .config(<span class="st">&quot;spark.sql.catalog.spark_catalog&quot;</span>, <span class="st">&quot;org.apache.spark.sql.delta.catalog.DeltaCatalog&quot;</span>) <span class="op">\</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    .config(<span class="st">&quot;spark.executor.memory&quot;</span>, <span class="st">&quot;10g&quot;</span>) <span class="op">\</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    .config(<span class="st">&quot;spark.executor.cores&quot;</span>, <span class="dv">12</span>) <span class="op">\</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    .config(<span class="st">&quot;spark.dynamicAllocation.enabled&quot;</span>, <span class="st">&quot;true&quot;</span>) <span class="op">\</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    .config(<span class="st">&quot;spark.dynamicAllocation.minExecutors&quot;</span>,<span class="st">&quot;10&quot;</span>) <span class="op">\</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    .config(<span class="st">&quot;spark.dynamicAllocation.maxExecutors&quot;</span>,<span class="st">&quot;15&quot;</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>spark <span class="op">=</span> configure_spark_with_delta_pip(builder).getOrCreate()</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/a/24657630/10527496</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co"># https://stackoverflow.com/questions/70192980/error-creating-sparkcontext-locally-an-error-occurred-while-calling-none-org-apa</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>24/09/08 23:15:12 WARN Utils: Your hostname, ......... resolves to a loopback address: 127.0.0.1; using ......... instead (on interface en0)
+24/09/08 23:15:12 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Ivy Default Cache set to: /Users/guillaumepressiat/.ivy2/cache
+The jars for the packages stored in: /Users/guillaumepressiat/.ivy2/jars
+io.delta#delta-core_2.12 added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-126ee81f-c0c6-45e3-aeef-1cbcde32f6e4;1.0
+    confs: [default]
+    found io.delta#delta-core_2.12;2.4.0 in central
+    found io.delta#delta-storage;2.4.0 in central
+    found org.antlr#antlr4-runtime;4.9.3 in central
+:: resolution report :: resolve 80ms :: artifacts dl 3ms
+    :: modules in use:
+    io.delta#delta-core_2.12;2.4.0 from central in [default]
+    io.delta#delta-storage;2.4.0 from central in [default]
+    org.antlr#antlr4-runtime;4.9.3 from central in [default]
+    ---------------------------------------------------------------------
+    |                  |            modules            ||   artifacts   |
+    |       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+    ---------------------------------------------------------------------
+    |      default     |   3   |   0   |   0   |   0   ||   3   |   0   |
+    ---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-126ee81f-c0c6-45e3-aeef-1cbcde32f6e4
+    confs: [default]
+    0 artifacts copied, 3 already retrieved (0kB/2ms)
+24/09/08 23:15:13 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to &quot;WARN&quot;.
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>:: loading settings :: url = jar:file:/opt/homebrew/lib/python3.11/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>annee_delete <span class="op">=</span> <span class="st">&#39;2023&#39;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>string_delete <span class="op">=</span> <span class="st">&quot;ansor = </span><span class="ch">\&quot;</span><span class="st">&quot;</span> <span class="op">+</span> annee_delete <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\&quot;</span><span class="st">&quot;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>string_delete</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># string_delete = &quot;ansor is NULL&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>&#39;ansor = &quot;2023&quot;&#39;</code></pre>
 </div>
 </div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#.noeval</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> [<span class="st">&#39;rsa@rsa&#39;</span>, <span class="st">&#39;rsa@actes&#39;</span>, <span class="st">&#39;rsa@diags&#39;</span>, <span class="st">&#39;rsa@rsa_um&#39;</span>]:</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    delete_in_delta(i, string_delete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> [<span class="st">&#39;rsa@rsa&#39;</span>, <span class="st">&#39;rsa@actes&#39;</span>, <span class="st">&#39;rsa@diags&#39;</span>, <span class="st">&#39;rsa@rsa_um&#39;</span>]:</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    delete_in_delta(i, string_delete)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>24/09/08 23:15:17 WARN package: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting &#39;spark.sql.debug.maxToStringFields&#39;.
+Java HotSpot(TM) 64-Bit Server VM warning: CodeCache is full. Compiler has been disabled.
+Java HotSpot(TM) 64-Bit Server VM warning: Try increasing the code cache size using -XX:ReservedCodeCacheSize=</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CodeCache: size=131072Kb used=48351Kb max_used=48384Kb free=82720Kb
+ bounds [0x0000000106880000, 0x0000000109830000, 0x000000010e880000]
+ total_blobs=17469 nmethods=16361 adapters=1019
+ compilation: disabled (not enough contiguous free space left)</code></pre>
+</div>
+</div>
 <p>2023 a bien été supprimé</p>
-<p>%%time count_pivot_periode(‘rsa@rsa’)</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>count_pivot_periode(<span class="st">&#39;rsa@rsa&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 133 ms, sys: 50.5 ms, total: 183 ms
+Wall time: 60.5 ms</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+text-align: right;
+white-space: pre-wrap;
+}
+</style>
+<small>shape: (10, 13)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">ansor</th>
+<th data-quarto-table-cell-role="th">01</th>
+<th data-quarto-table-cell-role="th">02</th>
+<th data-quarto-table-cell-role="th">03</th>
+<th data-quarto-table-cell-role="th">04</th>
+<th data-quarto-table-cell-role="th">05</th>
+<th data-quarto-table-cell-role="th">06</th>
+<th data-quarto-table-cell-role="th">07</th>
+<th data-quarto-table-cell-role="th">08</th>
+<th data-quarto-table-cell-role="th">09</th>
+<th data-quarto-table-cell-role="th">10</th>
+<th data-quarto-table-cell-role="th">11</th>
+<th data-quarto-table-cell-role="th">12</th>
+</tr>
+<tr class="odd">
+<th>str</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&quot;2013&quot;</td>
+<td>9167</td>
+<td>8806</td>
+<td>9540</td>
+<td>9158</td>
+<td>8465</td>
+<td>8679</td>
+<td>9317</td>
+<td>8032</td>
+<td>8305</td>
+<td>9309</td>
+<td>8432</td>
+<td>8751</td>
+</tr>
+<tr class="even">
+<td>&quot;2014&quot;</td>
+<td>9405</td>
+<td>8525</td>
+<td>9006</td>
+<td>9063</td>
+<td>8563</td>
+<td>8986</td>
+<td>9274</td>
+<td>8263</td>
+<td>9450</td>
+<td>9926</td>
+<td>8779</td>
+<td>9518</td>
+</tr>
+<tr class="odd">
+<td>&quot;2015&quot;</td>
+<td>9296</td>
+<td>8970</td>
+<td>9763</td>
+<td>9019</td>
+<td>8374</td>
+<td>9561</td>
+<td>9216</td>
+<td>8171</td>
+<td>9493</td>
+<td>9999</td>
+<td>9419</td>
+<td>9905</td>
+</tr>
+<tr class="even">
+<td>&quot;2016&quot;</td>
+<td>9724</td>
+<td>9591</td>
+<td>10515</td>
+<td>9912</td>
+<td>9812</td>
+<td>10216</td>
+<td>9229</td>
+<td>9272</td>
+<td>10269</td>
+<td>10187</td>
+<td>10333</td>
+<td>10567</td>
+</tr>
+<tr class="odd">
+<td>&quot;2017&quot;</td>
+<td>10668</td>
+<td>9656</td>
+<td>11052</td>
+<td>9818</td>
+<td>10936</td>
+<td>11431</td>
+<td>10230</td>
+<td>10274</td>
+<td>10662</td>
+<td>11118</td>
+<td>10731</td>
+<td>10361</td>
+</tr>
+<tr class="even">
+<td>&quot;2018&quot;</td>
+<td>10934</td>
+<td>10013</td>
+<td>11135</td>
+<td>10196</td>
+<td>10086</td>
+<td>10838</td>
+<td>10730</td>
+<td>10364</td>
+<td>10529</td>
+<td>11423</td>
+<td>10974</td>
+<td>10944</td>
+</tr>
+<tr class="odd">
+<td>&quot;2019&quot;</td>
+<td>11665</td>
+<td>10526</td>
+<td>11687</td>
+<td>11162</td>
+<td>10776</td>
+<td>10660</td>
+<td>11233</td>
+<td>9841</td>
+<td>10745</td>
+<td>11357</td>
+<td>10570</td>
+<td>11238</td>
+</tr>
+<tr class="even">
+<td>&quot;2020&quot;</td>
+<td>11885</td>
+<td>10942</td>
+<td>10220</td>
+<td>8568</td>
+<td>9483</td>
+<td>11289</td>
+<td>11469</td>
+<td>10046</td>
+<td>11786</td>
+<td>11417</td>
+<td>10480</td>
+<td>11335</td>
+</tr>
+<tr class="odd">
+<td>&quot;2021&quot;</td>
+<td>11310</td>
+<td>10858</td>
+<td>12453</td>
+<td>11879</td>
+<td>11453</td>
+<td>12084</td>
+<td>11418</td>
+<td>10650</td>
+<td>12091</td>
+<td>11910</td>
+<td>11593</td>
+<td>11981</td>
+</tr>
+<tr class="even">
+<td>&quot;2022&quot;</td>
+<td>11913</td>
+<td>11075</td>
+<td>12889</td>
+<td>11559</td>
+<td>12057</td>
+<td>12120</td>
+<td>11048</td>
+<td>11280</td>
+<td>12257</td>
+<td>12171</td>
+<td>11766</td>
+<td>11766</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> [<span class="st">&#39;rsa@rsa&#39;</span>, <span class="st">&#39;rsa@actes&#39;</span>, <span class="st">&#39;rsa@diags&#39;</span>, <span class="st">&#39;rsa@rsa_um&#39;</span>]:</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    delete_in_delta(i, <span class="st">&quot;moissor in (&#39;03&#39;, &#39;06&#39;, &#39;09&#39;, &#39;12&#39;)&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>24/09/08 23:15:28 WARN MemoryManager: ..........
+</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>count_pivot_periode(<span class="st">&#39;rsa@rsa&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 113 ms, sys: 22.2 ms, total: 135 ms
+Wall time: 60.6 ms</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+text-align: right;
+white-space: pre-wrap;
+}
+</style>
+<small>shape: (10, 9)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">ansor</th>
+<th data-quarto-table-cell-role="th">01</th>
+<th data-quarto-table-cell-role="th">02</th>
+<th data-quarto-table-cell-role="th">04</th>
+<th data-quarto-table-cell-role="th">05</th>
+<th data-quarto-table-cell-role="th">07</th>
+<th data-quarto-table-cell-role="th">08</th>
+<th data-quarto-table-cell-role="th">10</th>
+<th data-quarto-table-cell-role="th">11</th>
+</tr>
+<tr class="odd">
+<th>str</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+<th>u32</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&quot;2013&quot;</td>
+<td>9167</td>
+<td>8806</td>
+<td>9158</td>
+<td>8465</td>
+<td>9317</td>
+<td>8032</td>
+<td>9309</td>
+<td>8432</td>
+</tr>
+<tr class="even">
+<td>&quot;2014&quot;</td>
+<td>9405</td>
+<td>8525</td>
+<td>9063</td>
+<td>8563</td>
+<td>9274</td>
+<td>8263</td>
+<td>9926</td>
+<td>8779</td>
+</tr>
+<tr class="odd">
+<td>&quot;2015&quot;</td>
+<td>9296</td>
+<td>8970</td>
+<td>9019</td>
+<td>8374</td>
+<td>9216</td>
+<td>8171</td>
+<td>9999</td>
+<td>9419</td>
+</tr>
+<tr class="even">
+<td>&quot;2016&quot;</td>
+<td>9724</td>
+<td>9591</td>
+<td>9912</td>
+<td>9812</td>
+<td>9229</td>
+<td>9272</td>
+<td>10187</td>
+<td>10333</td>
+</tr>
+<tr class="odd">
+<td>&quot;2017&quot;</td>
+<td>10668</td>
+<td>9656</td>
+<td>9818</td>
+<td>10936</td>
+<td>10230</td>
+<td>10274</td>
+<td>11118</td>
+<td>10731</td>
+</tr>
+<tr class="even">
+<td>&quot;2018&quot;</td>
+<td>10934</td>
+<td>10013</td>
+<td>10196</td>
+<td>10086</td>
+<td>10730</td>
+<td>10364</td>
+<td>11423</td>
+<td>10974</td>
+</tr>
+<tr class="odd">
+<td>&quot;2019&quot;</td>
+<td>11665</td>
+<td>10526</td>
+<td>11162</td>
+<td>10776</td>
+<td>11233</td>
+<td>9841</td>
+<td>11357</td>
+<td>10570</td>
+</tr>
+<tr class="even">
+<td>&quot;2020&quot;</td>
+<td>11885</td>
+<td>10942</td>
+<td>8568</td>
+<td>9483</td>
+<td>11469</td>
+<td>10046</td>
+<td>11417</td>
+<td>10480</td>
+</tr>
+<tr class="odd">
+<td>&quot;2021&quot;</td>
+<td>11310</td>
+<td>10858</td>
+<td>11879</td>
+<td>11453</td>
+<td>11418</td>
+<td>10650</td>
+<td>11910</td>
+<td>11593</td>
+</tr>
+<tr class="even">
+<td>&quot;2022&quot;</td>
+<td>11913</td>
+<td>11075</td>
+<td>11559</td>
+<td>12057</td>
+<td>11048</td>
+<td>11280</td>
+<td>12171</td>
+<td>11766</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </section>
 <section id="vacuum-à-faire" class="level2">
 <h2 class="anchored" data-anchor-id="vacuum-à-faire">vacuum, à faire</h2>
@@ -4218,61 +4643,61 @@ white-space: pre-wrap;
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href>rsa</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href>actes</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href>diagnostics</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># d&#39;abord les rsa concernés par le filtre GHM C sortis en mai 2020</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@rsa&#39;</span>)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>)</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;rsatype&#39;</span>) <span class="op">==</span> <span class="st">&#39;C&#39;</span>)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a> .unique()</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a> .collect()</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># d&#39;abord les rsa concernés par le filtre GHM C sortis en mai 2020</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@rsa&#39;</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;rsatype&#39;</span>) <span class="op">==</span> <span class="st">&#39;C&#39;</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a> .unique()</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a> .collect()</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensuite les actes correspondants au pattern</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@actes&#39;</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>((pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>)) </span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;cdccam&#39;</span>).<span class="bu">str</span>.contains(<span class="st">&#39;N.KA&#39;</span>))</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;act&#39;</span>) <span class="op">==</span> <span class="st">&#39;1&#39;</span>)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a> .unique()</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a> .collect()</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensuite les actes correspondants au pattern</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@actes&#39;</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>((pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>)) </span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;cdccam&#39;</span>).<span class="bu">str</span>.contains(<span class="st">&#39;N.KA&#39;</span>))</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;act&#39;</span>) <span class="op">==</span> <span class="st">&#39;1&#39;</span>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a> .unique()</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a> .collect()</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Et la table des diagnostics</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@diags&#39;</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>((pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>)) </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;diag&#39;</span>).<span class="bu">str</span>.contains(<span class="st">&#39;S72&#39;</span>))</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;position&#39;</span>) <span class="op">==</span> <span class="dv">1</span>)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a> .select(<span class="st">&#39;cle_rsa&#39;</span>)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a> .unique()</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a> .collect()</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Et la table des diagnostics</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@diags&#39;</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>((pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>)) </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;diag&#39;</span>).<span class="bu">str</span>.contains(<span class="st">&#39;S72&#39;</span>))</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;position&#39;</span>) <span class="op">==</span> <span class="dv">1</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a> .select(<span class="st">&#39;cle_rsa&#39;</span>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a> .unique()</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a> .collect()</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <section id="rsa-partie-fixe-actes" class="level2">
 <h2 class="anchored" data-anchor-id="rsa-partie-fixe-actes">rsa partie fixe &amp; actes</h2>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Jointure entre la table des RSA partie fixe et la table des actes</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@rsa&#39;</span>)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;rsatype&#39;</span>) <span class="op">==</span> <span class="st">&#39;C&#39;</span>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a> .unique()</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a> .collect()</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>).join(</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@actes&#39;</span>)</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>((pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>)) </span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;cdccam&#39;</span>).<span class="bu">str</span>.contains(<span class="st">&#39;N.KA&#39;</span>))</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;act&#39;</span>) <span class="op">==</span> <span class="st">&#39;1&#39;</span>)</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a> .unique()</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a> .collect()</span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>), on <span class="op">=</span> <span class="st">&#39;cle_rsa&#39;</span>, how <span class="op">=</span> <span class="st">&#39;inner&#39;</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>).group_by(<span class="st">&#39;nofiness&#39;</span>, <span class="st">&#39;am&#39;</span>).agg(pl.col(<span class="st">&#39;cle_rsa&#39;</span>).n_unique().alias(<span class="st">&#39;count&#39;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Jointure entre la table des RSA partie fixe et la table des actes</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@rsa&#39;</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;rsatype&#39;</span>) <span class="op">==</span> <span class="st">&#39;C&#39;</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a> .unique()</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a> .collect()</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>).join(</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@actes&#39;</span>)</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>((pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>)) </span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;cdccam&#39;</span>).<span class="bu">str</span>.contains(<span class="st">&#39;N.KA&#39;</span>))</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;act&#39;</span>) <span class="op">==</span> <span class="st">&#39;1&#39;</span>)</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a> .unique()</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a> .collect()</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>), on <span class="op">=</span> <span class="st">&#39;cle_rsa&#39;</span>, how <span class="op">=</span> <span class="st">&#39;inner&#39;</span></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>).group_by(<span class="st">&#39;nofiness&#39;</span>, <span class="st">&#39;am&#39;</span>).agg(pl.col(<span class="st">&#39;cle_rsa&#39;</span>).n_unique().alias(<span class="st">&#39;count&#39;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 1.63 s, sys: 327 ms, total: 1.96 s
-Wall time: 629 ms</code></pre>
+<pre><code>CPU times: user 978 ms, sys: 347 ms, total: 1.32 s
+Wall time: 463 ms</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="18">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -4306,22 +4731,22 @@ white-space: pre-wrap;
 </div>
 </div>
 <p>En alternative, on peut aussi utiliser les colonnes “stream” de la table RSA qui contiennent tous les actes, diags et permettent d’éviter de faire des jointures entre plusieurs tables quand l’information souhaitée est juste (présence ou absence de l’acte, du diag, etc.), c’est ce qui est fait ci-dessous</p>
-<div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative en utilisant la zone &quot;stream&quot; des actes en ligne</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@rsa&#39;</span>)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>     (pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>) <span class="op">&amp;</span> </span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>     (pl.col(<span class="st">&#39;rsatype&#39;</span>) <span class="op">==</span> <span class="st">&#39;C&#39;</span>) <span class="op">&amp;</span> </span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>         (pl.col(<span class="st">&#39;stream_actes&#39;</span>).<span class="bu">str</span>.contains(<span class="st">&#39;N.KA&#39;</span>)))</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a> .unique()</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a> .collect()</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>).group_by(<span class="st">&#39;nofiness&#39;</span>, <span class="st">&#39;am&#39;</span>).agg(pl.col(<span class="st">&#39;cle_rsa&#39;</span>).n_unique().alias(<span class="st">&#39;count&#39;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative en utilisant la zone &quot;stream&quot; des actes en ligne</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@rsa&#39;</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>     (pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>) <span class="op">&amp;</span> </span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>     (pl.col(<span class="st">&#39;rsatype&#39;</span>) <span class="op">==</span> <span class="st">&#39;C&#39;</span>) <span class="op">&amp;</span> </span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>         (pl.col(<span class="st">&#39;stream_actes&#39;</span>).<span class="bu">str</span>.contains(<span class="st">&#39;N.KA&#39;</span>)))</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a> .unique()</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a> .collect()</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>).group_by(<span class="st">&#39;nofiness&#39;</span>, <span class="st">&#39;am&#39;</span>).agg(pl.col(<span class="st">&#39;cle_rsa&#39;</span>).n_unique().alias(<span class="st">&#39;count&#39;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 1.82 s, sys: 294 ms, total: 2.11 s
-Wall time: 685 ms</code></pre>
+<pre><code>CPU times: user 1.05 s, sys: 252 ms, total: 1.3 s
+Wall time: 431 ms</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="19">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -4359,37 +4784,37 @@ white-space: pre-wrap;
 <h2 class="anchored" data-anchor-id="rsa-partie-fixe-actes-diags">rsa partie fixe &amp; actes &amp; diags</h2>
 <p>On ajoute la clause sur le diagnostic principal S72</p>
 <p><br></p>
-<div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Jointure entre la table des RSA partie fixe et la table des actes</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@rsa&#39;</span>)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;rsatype&#39;</span>) <span class="op">==</span> <span class="st">&#39;C&#39;</span>)</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a> .unique()</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a> .collect()</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>).join(</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@actes&#39;</span>)</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>((pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>)) </span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;cdccam&#39;</span>).<span class="bu">str</span>.contains(<span class="st">&#39;N.KA&#39;</span>))</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;act&#39;</span>) <span class="op">==</span> <span class="st">&#39;1&#39;</span>)</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a> .unique()</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a> .collect()</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>), on <span class="op">=</span> <span class="st">&#39;cle_rsa&#39;</span>, how <span class="op">=</span> <span class="st">&#39;inner&#39;</span></span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>).join(</span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@diags&#39;</span>)</span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>((pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>)) </span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;diag&#39;</span>).<span class="bu">str</span>.contains(<span class="st">&#39;S72&#39;</span>))</span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;position&#39;</span>) <span class="op">==</span> <span class="dv">1</span>)</span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a> .select(<span class="st">&#39;cle_rsa&#39;</span>)</span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a> .unique()</span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a> .collect()</span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>), on <span class="op">=</span> <span class="st">&#39;cle_rsa&#39;</span>, how <span class="op">=</span> <span class="st">&#39;inner&#39;</span></span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>).group_by(<span class="st">&#39;nofiness&#39;</span>, <span class="st">&#39;am&#39;</span>).agg(pl.col(<span class="st">&#39;cle_rsa&#39;</span>).n_unique().alias(<span class="st">&#39;count&#39;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Jointure entre la table des RSA partie fixe et la table des actes</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@rsa&#39;</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;rsatype&#39;</span>) <span class="op">==</span> <span class="st">&#39;C&#39;</span>)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a> .unique()</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a> .collect()</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>).join(</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@actes&#39;</span>)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>((pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>)) </span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;cdccam&#39;</span>).<span class="bu">str</span>.contains(<span class="st">&#39;N.KA&#39;</span>))</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;act&#39;</span>) <span class="op">==</span> <span class="st">&#39;1&#39;</span>)</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a> .unique()</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a> .collect()</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>), on <span class="op">=</span> <span class="st">&#39;cle_rsa&#39;</span>, how <span class="op">=</span> <span class="st">&#39;inner&#39;</span></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>).join(</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@diags&#39;</span>)</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>((pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>)) </span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;diag&#39;</span>).<span class="bu">str</span>.contains(<span class="st">&#39;S72&#39;</span>))</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(pl.col(<span class="st">&#39;position&#39;</span>) <span class="op">==</span> <span class="dv">1</span>)</span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a> .select(<span class="st">&#39;cle_rsa&#39;</span>)</span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a> .unique()</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a> .collect()</span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>), on <span class="op">=</span> <span class="st">&#39;cle_rsa&#39;</span>, how <span class="op">=</span> <span class="st">&#39;inner&#39;</span></span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>).group_by(<span class="st">&#39;nofiness&#39;</span>, <span class="st">&#39;am&#39;</span>).agg(pl.col(<span class="st">&#39;cle_rsa&#39;</span>).n_unique().alias(<span class="st">&#39;count&#39;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 2.16 s, sys: 271 ms, total: 2.43 s
-Wall time: 861 ms</code></pre>
+<pre><code>CPU times: user 1.27 s, sys: 179 ms, total: 1.44 s
+Wall time: 507 ms</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="20">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -4422,23 +4847,23 @@ white-space: pre-wrap;
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative en utilisant la zone &quot;stream&quot; des actes en ligne, et la colonne dp</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@rsa&#39;</span>)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>     (pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>) <span class="op">&amp;</span> </span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>     (pl.col(<span class="st">&#39;rsatype&#39;</span>) <span class="op">==</span> <span class="st">&#39;C&#39;</span>) <span class="op">&amp;</span> </span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>         (pl.col(<span class="st">&#39;stream_actes&#39;</span>).<span class="bu">str</span>.contains(<span class="st">&#39;N.KA&#39;</span>)) <span class="op">&amp;</span> </span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>         (pl.col(<span class="st">&#39;dp&#39;</span>).<span class="bu">str</span>.contains(<span class="st">&#39;S72&#39;</span>)))</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a> .unique()</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a> .collect()</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>).group_by(<span class="st">&#39;nofiness&#39;</span>, <span class="st">&#39;am&#39;</span>).<span class="bu">len</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative en utilisant la zone &quot;stream&quot; des actes en ligne, et la colonne dp</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>(remote_table(<span class="st">&#39;rsa@rsa&#39;</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a> .<span class="bu">filter</span>(</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>     (pl.col(<span class="st">&#39;am&#39;</span>) <span class="op">==</span> <span class="st">&#39;202005&#39;</span>) <span class="op">&amp;</span> </span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>     (pl.col(<span class="st">&#39;rsatype&#39;</span>) <span class="op">==</span> <span class="st">&#39;C&#39;</span>) <span class="op">&amp;</span> </span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>         (pl.col(<span class="st">&#39;stream_actes&#39;</span>).<span class="bu">str</span>.contains(<span class="st">&#39;N.KA&#39;</span>)) <span class="op">&amp;</span> </span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>         (pl.col(<span class="st">&#39;dp&#39;</span>).<span class="bu">str</span>.contains(<span class="st">&#39;S72&#39;</span>)))</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a> .unique()</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a> .collect()</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>).group_by(<span class="st">&#39;nofiness&#39;</span>, <span class="st">&#39;am&#39;</span>).<span class="bu">len</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 1.77 s, sys: 214 ms, total: 1.98 s
-Wall time: 657 ms</code></pre>
+<pre><code>CPU times: user 1.04 s, sys: 148 ms, total: 1.18 s
+Wall time: 389 ms</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="21">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -4475,28 +4900,28 @@ white-space: pre-wrap;
 <section id="nombre-de-lignes-colonnes-des-tables" class="level2">
 <h2 class="anchored" data-anchor-id="nombre-de-lignes-colonnes-des-tables">Nombre de lignes / colonnes des tables</h2>
 <p><strong>Après avoir enlevé 2023 M04</strong></p>
-<div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>remote_table(<span class="st">&#39;rsa@rsa&#39;</span>).collect().shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
-<pre><code>(1386059, 108)</code></pre>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>remote_table(<span class="st">&#39;rsa@rsa&#39;</span>).collect().shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>(816519, 108)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>remote_table(<span class="st">&#39;rsa@actes&#39;</span>).collect().shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
-<pre><code>(4705532, 19)</code></pre>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>remote_table(<span class="st">&#39;rsa@actes&#39;</span>).collect().shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>(2818046, 19)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>remote_table(<span class="st">&#39;rsa@diags&#39;</span>).collect().shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
-<pre><code>(8394120, 10)</code></pre>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>remote_table(<span class="st">&#39;rsa@diags&#39;</span>).collect().shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>(4972199, 10)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>remote_table(<span class="st">&#39;rsa@rsa_um&#39;</span>).collect().shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
-<pre><code>(1547380, 23)</code></pre>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>remote_table(<span class="st">&#39;rsa@rsa_um&#39;</span>).collect().shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>(912675, 23)</code></pre>
 </div>
 </div>
 </section>
@@ -4505,9 +4930,9 @@ white-space: pre-wrap;
 <h1>Description des rsa</h1>
 <p>Avec la fonction <code>describle</code> de <code>polars</code> on affiche des statistiques surles données rsa.</p>
 <p>Le choix a été fait d’ordonner les colonnes par ordre alphabétique.</p>
-<div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>remote_table(<span class="st">&#39;rsa@rsa&#39;</span>).collect().describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>remote_table(<span class="st">&#39;rsa@rsa&#39;</span>).collect().describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -4676,114 +5101,114 @@ white-space: pre-wrap;
 <tbody>
 <tr class="odd">
 <td>&quot;count&quot;</td>
-<td>&quot;553964&quot;</td>
-<td>&quot;1658&quot;</td>
-<td>1.3391e6</td>
-<td>52416.0</td>
-<td>46959.0</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;119631&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;20251&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;553964&quot;</td>
-<td>&quot;19651&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1458&quot;</td>
-<td>&quot;899&quot;</td>
-<td>42751.0</td>
-<td>&quot;94975&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;670930&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>1.386059e6</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;109269&quot;</td>
-<td>&quot;337271&quot;</td>
-<td>&quot;1171340&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1060154&quot;</td>
-<td>&quot;1153074&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>…</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;7&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;663233&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>30167.0</td>
-<td>&quot;296197&quot;</td>
-<td>&quot;2&quot;</td>
-<td>&quot;6953&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1058106&quot;</td>
-<td>&quot;707944&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;677458&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;920203&quot;</td>
-<td>&quot;20007&quot;</td>
-<td>&quot;143463&quot;</td>
-<td>&quot;143463&quot;</td>
+<td>&quot;268230&quot;</td>
+<td>&quot;345&quot;</td>
+<td>788647.0</td>
+<td>31919.0</td>
+<td>27872.0</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;78064&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;8339&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;268230&quot;</td>
 <td>&quot;0&quot;</td>
-<td>&quot;1040839&quot;</td>
-<td>&quot;259236&quot;</td>
-<td>&quot;1720&quot;</td>
-<td>&quot;209464&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;2057&quot;</td>
-<td>&quot;7306&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;742&quot;</td>
+<td>&quot;393&quot;</td>
+<td>25849.0</td>
+<td>&quot;57401&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;393904&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>816519.0</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;64939&quot;</td>
+<td>&quot;154651&quot;</td>
+<td>&quot;674035&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;601571&quot;</td>
+<td>&quot;655769&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>…</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;5&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;333169&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>18270.0</td>
+<td>&quot;190281&quot;</td>
+<td>&quot;0&quot;</td>
+<td>&quot;3996&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;626615&quot;</td>
+<td>&quot;419122&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;397444&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;503187&quot;</td>
+<td>&quot;9761&quot;</td>
+<td>&quot;0&quot;</td>
+<td>&quot;0&quot;</td>
+<td>&quot;0&quot;</td>
+<td>&quot;582256&quot;</td>
+<td>&quot;155923&quot;</td>
+<td>&quot;966&quot;</td>
+<td>&quot;122544&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;1117&quot;</td>
+<td>&quot;4299&quot;</td>
 </tr>
 <tr class="even">
 <td>&quot;null_count&quot;</td>
-<td>&quot;832095&quot;</td>
-<td>&quot;1384401&quot;</td>
-<td>46959.0</td>
-<td>1.333643e6</td>
-<td>1.3391e6</td>
+<td>&quot;548289&quot;</td>
+<td>&quot;816174&quot;</td>
+<td>27872.0</td>
+<td>784600.0</td>
+<td>788647.0</td>
 <td>&quot;0&quot;</td>
-<td>&quot;1266428&quot;</td>
+<td>&quot;738455&quot;</td>
 <td>&quot;0&quot;</td>
 <td>&quot;0&quot;</td>
-<td>&quot;1365808&quot;</td>
+<td>&quot;808180&quot;</td>
 <td>&quot;0&quot;</td>
-<td>&quot;832095&quot;</td>
-<td>&quot;1366408&quot;</td>
+<td>&quot;548289&quot;</td>
+<td>&quot;816519&quot;</td>
 <td>&quot;0&quot;</td>
-<td>&quot;1384601&quot;</td>
-<td>&quot;1385160&quot;</td>
-<td>1.343308e6</td>
-<td>&quot;1291084&quot;</td>
+<td>&quot;815777&quot;</td>
+<td>&quot;816126&quot;</td>
+<td>790670.0</td>
+<td>&quot;759118&quot;</td>
 <td>&quot;0&quot;</td>
-<td>&quot;715129&quot;</td>
+<td>&quot;422615&quot;</td>
 <td>&quot;0&quot;</td>
 <td>&quot;0&quot;</td>
 <td>0.0</td>
 <td>&quot;0&quot;</td>
-<td>&quot;1276790&quot;</td>
-<td>&quot;1048788&quot;</td>
-<td>&quot;214719&quot;</td>
+<td>&quot;751580&quot;</td>
+<td>&quot;661868&quot;</td>
+<td>&quot;142484&quot;</td>
 <td>&quot;0&quot;</td>
 <td>&quot;0&quot;</td>
-<td>&quot;325905&quot;</td>
-<td>&quot;232985&quot;</td>
+<td>&quot;214948&quot;</td>
+<td>&quot;160750&quot;</td>
 <td>&quot;0&quot;</td>
 <td>&quot;0&quot;</td>
 <td>&quot;0&quot;</td>
@@ -4792,16 +5217,14 @@ white-space: pre-wrap;
 <td>…</td>
 <td>&quot;0&quot;</td>
 <td>&quot;0&quot;</td>
-<td>&quot;1386052&quot;</td>
+<td>&quot;816514&quot;</td>
 <td>&quot;0&quot;</td>
-<td>&quot;722826&quot;</td>
+<td>&quot;483350&quot;</td>
 <td>&quot;0&quot;</td>
-<td>1.355892e6</td>
-<td>&quot;1089862&quot;</td>
-<td>&quot;1386057&quot;</td>
-<td>&quot;1379106&quot;</td>
-<td>&quot;0&quot;</td>
-<td>&quot;0&quot;</td>
+<td>798249.0</td>
+<td>&quot;626238&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;812523&quot;</td>
 <td>&quot;0&quot;</td>
 <td>&quot;0&quot;</td>
 <td>&quot;0&quot;</td>
@@ -4809,32 +5232,34 @@ white-space: pre-wrap;
 <td>&quot;0&quot;</td>
 <td>&quot;0&quot;</td>
 <td>&quot;0&quot;</td>
-<td>&quot;327953&quot;</td>
-<td>&quot;678115&quot;</td>
-<td>&quot;0&quot;</td>
-<td>&quot;708601&quot;</td>
-<td>&quot;0&quot;</td>
-<td>&quot;465856&quot;</td>
-<td>&quot;1366052&quot;</td>
-<td>&quot;1242596&quot;</td>
-<td>&quot;1242596&quot;</td>
-<td>&quot;1386059&quot;</td>
-<td>&quot;345220&quot;</td>
-<td>&quot;1126823&quot;</td>
-<td>&quot;1384339&quot;</td>
-<td>&quot;1176595&quot;</td>
 <td>&quot;0&quot;</td>
 <td>&quot;0&quot;</td>
-<td>&quot;1384002&quot;</td>
-<td>&quot;1378753&quot;</td>
+<td>&quot;189904&quot;</td>
+<td>&quot;397397&quot;</td>
+<td>&quot;0&quot;</td>
+<td>&quot;419075&quot;</td>
+<td>&quot;0&quot;</td>
+<td>&quot;313332&quot;</td>
+<td>&quot;806758&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;816519&quot;</td>
+<td>&quot;234263&quot;</td>
+<td>&quot;660596&quot;</td>
+<td>&quot;815553&quot;</td>
+<td>&quot;693975&quot;</td>
+<td>&quot;0&quot;</td>
+<td>&quot;0&quot;</td>
+<td>&quot;815402&quot;</td>
+<td>&quot;812220&quot;</td>
 </tr>
 <tr class="odd">
 <td>&quot;mean&quot;</td>
 <td>null</td>
 <td>null</td>
-<td>58.715123</td>
-<td>38.508795</td>
-<td>57.895143</td>
+<td>58.678246</td>
+<td>38.513675</td>
+<td>55.50653</td>
 <td>null</td>
 <td>null</td>
 <td>null</td>
@@ -4846,13 +5271,13 @@ white-space: pre-wrap;
 <td>null</td>
 <td>null</td>
 <td>null</td>
-<td>214.421207</td>
+<td>215.117722</td>
 <td>null</td>
 <td>null</td>
 <td>null</td>
-<td>&quot;2018-10-20 05:45:58.617000&quot;</td>
-<td>&quot;2018-10-22 18:00:11.703000&quot;</td>
-<td>2.509874</td>
+<td>&quot;2018-03-18 07:32:21.772000&quot;</td>
+<td>&quot;2018-03-20 21:00:43.053000&quot;</td>
+<td>2.561357</td>
 <td>null</td>
 <td>null</td>
 <td>null</td>
@@ -4873,7 +5298,7 @@ white-space: pre-wrap;
 <td>null</td>
 <td>null</td>
 <td>null</td>
-<td>3181.599463</td>
+<td>3183.633881</td>
 <td>null</td>
 <td>null</td>
 <td>null</td>
@@ -4909,9 +5334,9 @@ white-space: pre-wrap;
 <td>&quot;std&quot;</td>
 <td>null</td>
 <td>null</td>
-<td>21.579356</td>
-<td>2.805596</td>
-<td>95.845139</td>
+<td>21.56475</td>
+<td>2.825167</td>
+<td>94.605443</td>
 <td>null</td>
 <td>null</td>
 <td>null</td>
@@ -4923,13 +5348,13 @@ white-space: pre-wrap;
 <td>null</td>
 <td>null</td>
 <td>null</td>
-<td>87.009044</td>
+<td>86.785808</td>
 <td>null</td>
 <td>null</td>
 <td>null</td>
 <td>null</td>
 <td>null</td>
-<td>6.340697</td>
+<td>6.34697</td>
 <td>null</td>
 <td>null</td>
 <td>null</td>
@@ -4950,7 +5375,7 @@ white-space: pre-wrap;
 <td>null</td>
 <td>null</td>
 <td>null</td>
-<td>709.952416</td>
+<td>712.20168</td>
 <td>null</td>
 <td>null</td>
 <td>null</td>
@@ -4995,8 +5420,8 @@ white-space: pre-wrap;
 <td>&quot;2013&quot;</td>
 <td>&quot;A&quot;</td>
 <td>&quot;1000&quot;</td>
-<td>&quot;1090&quot;</td>
-<td>&quot;5&quot;</td>
+<td>&quot;1170&quot;</td>
+<td>null</td>
 <td>&quot;1&quot;</td>
 <td>&quot;1&quot;</td>
 <td>&quot;1&quot;</td>
@@ -5023,13 +5448,13 @@ white-space: pre-wrap;
 <td>…</td>
 <td>&quot;220&quot;</td>
 <td>&quot;116&quot;</td>
-<td>&quot;INNOV1441001C&quot;</td>
+<td>&quot;INNOV1441001H&quot;</td>
 <td>&quot;0&quot;</td>
 <td>&quot;0&quot;</td>
 <td>&quot;201301&quot;</td>
 <td>100.0</td>
 <td>&quot;1&quot;</td>
-<td>&quot;1&quot;</td>
+<td>null</td>
 <td>&quot;1&quot;</td>
 <td>&quot;0&quot;</td>
 <td>&quot;1&quot;</td>
@@ -5040,15 +5465,15 @@ white-space: pre-wrap;
 <td>&quot;0&quot;</td>
 <td>&quot;0&quot;</td>
 <td>&quot;1&quot;</td>
-<td>&quot;AAFA002&quot;</td>
-<td>&quot;A020, R104, R509, Z290&quot;</td>
+<td>&quot;AAFA001, ACQK001, YYYY467, ZZQ…</td>
+<td>&quot;A022&quot;</td>
 <td>&quot;A010&quot;</td>
-<td>&quot;, A321&quot;</td>
+<td>&quot;, A169&quot;</td>
 <td>&quot;00 C, 29 M&quot;</td>
 <td>&quot;0&quot;</td>
 <td>&quot;1&quot;</td>
-<td>&quot;0&quot;</td>
-<td>&quot;0&quot;</td>
+<td>null</td>
+<td>null</td>
 <td>null</td>
 <td>&quot;0&quot;</td>
 <td>&quot;1&quot;</td>
@@ -5077,12 +5502,12 @@ white-space: pre-wrap;
 <td>null</td>
 <td>null</td>
 <td>null</td>
-<td>164.0</td>
+<td>168.0</td>
 <td>null</td>
 <td>null</td>
 <td>null</td>
-<td>&quot;2016-03-01&quot;</td>
-<td>&quot;2016-03-03&quot;</td>
+<td>&quot;2015-10-24&quot;</td>
+<td>&quot;2015-10-27&quot;</td>
 <td>0.0</td>
 <td>null</td>
 <td>null</td>
@@ -5140,7 +5565,7 @@ white-space: pre-wrap;
 <td>&quot;50%&quot;</td>
 <td>null</td>
 <td>null</td>
-<td>64.0</td>
+<td>63.0</td>
 <td>39.0</td>
 <td>0.0</td>
 <td>null</td>
@@ -5154,12 +5579,12 @@ white-space: pre-wrap;
 <td>null</td>
 <td>null</td>
 <td>null</td>
-<td>262.0</td>
+<td>263.0</td>
 <td>null</td>
 <td>null</td>
 <td>null</td>
-<td>&quot;2018-12-07&quot;</td>
-<td>&quot;2018-12-10&quot;</td>
+<td>&quot;2018-04-30&quot;</td>
+<td>&quot;2018-05-03&quot;</td>
 <td>0.0</td>
 <td>null</td>
 <td>null</td>
@@ -5181,7 +5606,7 @@ white-space: pre-wrap;
 <td>null</td>
 <td>null</td>
 <td>null</td>
-<td>3272.0</td>
+<td>3280.0</td>
 <td>null</td>
 <td>null</td>
 <td>null</td>
@@ -5219,7 +5644,7 @@ white-space: pre-wrap;
 <td>null</td>
 <td>74.0</td>
 <td>40.0</td>
-<td>81.0</td>
+<td>72.0</td>
 <td>null</td>
 <td>null</td>
 <td>null</td>
@@ -5235,8 +5660,8 @@ white-space: pre-wrap;
 <td>null</td>
 <td>null</td>
 <td>null</td>
-<td>&quot;2021-07-21&quot;</td>
-<td>&quot;2021-07-23&quot;</td>
+<td>&quot;2020-10-02&quot;</td>
+<td>&quot;2020-10-06&quot;</td>
 <td>3.0</td>
 <td>null</td>
 <td>null</td>
@@ -5297,24 +5722,24 @@ white-space: pre-wrap;
 <td>119.0</td>
 <td>44.0</td>
 <td>365.0</td>
-<td>&quot;202312&quot;</td>
+<td>&quot;202211&quot;</td>
 <td>&quot;2014&quot;</td>
-<td>&quot;2023&quot;</td>
-<td>&quot;2023&quot;</td>
+<td>&quot;2022&quot;</td>
+<td>&quot;2022&quot;</td>
 <td>&quot;C&quot;</td>
 <td>&quot;9JC04&quot;</td>
-<td>&quot;99501&quot;</td>
-<td>&quot;V&quot;</td>
-<td>&quot;143463&quot;</td>
+<td>&quot;99422&quot;</td>
+<td>null</td>
+<td>&quot;141901&quot;</td>
 <td>&quot;2&quot;</td>
 <td>&quot;2&quot;</td>
 <td>999.0</td>
 <td>&quot;7&quot;</td>
 <td>&quot;Z998&quot;</td>
 <td>&quot;Z992+1&quot;</td>
-<td>&quot;2023-12-31&quot;</td>
-<td>&quot;2023-12-31&quot;</td>
-<td>515.0</td>
+<td>&quot;2022-11-30&quot;</td>
+<td>&quot;2022-11-30&quot;</td>
+<td>466.0</td>
 <td>&quot;N&quot;</td>
 <td>&quot;0&quot;</td>
 <td>&quot;1&quot;</td>
@@ -5323,23 +5748,23 @@ white-space: pre-wrap;
 <td>&quot;28Z24Z&quot;</td>
 <td>&quot;9999&quot;</td>
 <td>&quot;1&quot;</td>
-<td>&quot;267&quot;</td>
+<td>&quot;252&quot;</td>
 <td>&quot;90&quot;</td>
 <td>&quot;Z&quot;</td>
 <td>&quot;62&quot;</td>
 <td>&quot;Z&quot;</td>
 <td>…</td>
-<td>&quot;228&quot;</td>
-<td>&quot;122&quot;</td>
+<td>&quot;227&quot;</td>
+<td>&quot;121&quot;</td>
 <td>&quot;INNOV1941008Z&quot;</td>
 <td>&quot;1&quot;</td>
 <td>&quot;2&quot;</td>
-<td>&quot;202312&quot;</td>
+<td>&quot;202211&quot;</td>
 <td>6640.0</td>
 <td>&quot;U&quot;</td>
-<td>&quot;1&quot;</td>
+<td>null</td>
 <td>&quot;2&quot;</td>
-<td>&quot;267&quot;</td>
+<td>&quot;252&quot;</td>
 <td>&quot;28&quot;</td>
 <td>&quot;Z&quot;</td>
 <td>&quot;62&quot;</td>
@@ -5348,15 +5773,15 @@ white-space: pre-wrap;
 <td>&quot;9&quot;</td>
 <td>&quot;2&quot;</td>
 <td>&quot;2&quot;</td>
-<td>&quot;ZZQX217, ZZQX197, HHQE005, ANR…</td>
-<td>&quot;Z999, Z922, Z713, K801, Z8660,…</td>
-<td>&quot;Z998, I500, J690&quot;</td>
+<td>&quot;ZZQX217, ZZQX162, HZHE002, HHQ…</td>
+<td>&quot;Z998, Z993&quot;</td>
+<td>&quot;Z998, T543&quot;</td>
 <td>&quot;Z992+&quot;</td>
 <td>&quot;88 P, 04 C&quot;</td>
 <td>&quot;1&quot;</td>
 <td>&quot;2&quot;</td>
-<td>&quot;0&quot;</td>
-<td>&quot;1&quot;</td>
+<td>null</td>
+<td>null</td>
 <td>null</td>
 <td>&quot;1&quot;</td>
 <td>&quot;4&quot;</td>
@@ -5376,52 +5801,90 @@ white-space: pre-wrap;
 <section id="historique" class="level1">
 <h1>Historique</h1>
 <p>On peut retracer les types d’actions réalisées avec les fichiers de méta-données json.</p>
-<div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> deltalake <span class="im">import</span> DeltaTable</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> DeltaTable(<span class="st">&quot;/Users/guillaumepressiat/Documents/data/delta/rsa/rsa&quot;</span>)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>dt.history()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="22">
-<pre><code>[{&#39;timestamp&#39;: 1725821403775,
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> deltalake <span class="im">import</span> DeltaTable <span class="im">as</span> DDT</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> DDT(<span class="st">&quot;/Users/guillaumepressiat/Documents/data/delta/rsa/rsa&quot;</span>)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>dt.history()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>[{&#39;timestamp&#39;: 1725830160223,
+  &#39;operation&#39;: &#39;DELETE&#39;,
+  &#39;operationParameters&#39;: {&#39;predicate&#39;: &#39;[&quot;moissor#7581 IN (03,06,09,12)&quot;]&#39;},
+  &#39;readVersion&#39;: 11,
+  &#39;isolationLevel&#39;: &#39;Serializable&#39;,
+  &#39;isBlindAppend&#39;: False,
+  &#39;engineInfo&#39;: &#39;Apache-Spark/3.4.3 Delta-Lake/2.4.0&#39;,
+  &#39;operationMetrics&#39;: {&#39;executionTimeMs&#39;: &#39;32936&#39;,
+   &#39;numAddedBytes&#39;: &#39;42490353&#39;,
+   &#39;numAddedChangeFiles&#39;: &#39;0&#39;,
+   &#39;numAddedFiles&#39;: &#39;10&#39;,
+   &#39;numCopiedRows&#39;: &#39;816519&#39;,
+   &#39;numDeletedRows&#39;: &#39;426077&#39;,
+   &#39;numRemovedBytes&#39;: &#39;69025074&#39;,
+   &#39;numRemovedFiles&#39;: &#39;10&#39;,
+   &#39;rewriteTimeMs&#39;: &#39;32476&#39;,
+   &#39;scanTimeMs&#39;: &#39;460&#39;},
+  &#39;txnId&#39;: &#39;35d8d37b-cd5f-4ff3-b780-76f260da9392&#39;,
+  &#39;version&#39;: 12},
+ {&#39;timestamp&#39;: 1725830121484,
+  &#39;operation&#39;: &#39;DELETE&#39;,
+  &#39;operationParameters&#39;: {&#39;predicate&#39;: &#39;[&quot;(ansor#45 = 2023)&quot;]&#39;},
+  &#39;readVersion&#39;: 10,
+  &#39;isolationLevel&#39;: &#39;Serializable&#39;,
+  &#39;isBlindAppend&#39;: False,
+  &#39;engineInfo&#39;: &#39;Apache-Spark/3.4.3 Delta-Lake/2.4.0&#39;,
+  &#39;txnId&#39;: &#39;87d5d0fc-6b9c-49cb-9024-ea03a92d764d&#39;,
+  &#39;operationMetrics&#39;: {&#39;executionTimeMs&#39;: &#39;4023&#39;,
+   &#39;numAddedBytes&#39;: &#39;0&#39;,
+   &#39;numAddedChangeFiles&#39;: &#39;0&#39;,
+   &#39;numAddedFiles&#39;: &#39;0&#39;,
+   &#39;numCopiedRows&#39;: &#39;0&#39;,
+   &#39;numDeletedRows&#39;: &#39;143463&#39;,
+   &#39;numRemovedBytes&#39;: &#39;7880925&#39;,
+   &#39;numRemovedFiles&#39;: &#39;1&#39;,
+   &#39;rewriteTimeMs&#39;: &#39;878&#39;,
+   &#39;scanTimeMs&#39;: &#39;3144&#39;},
+  &#39;version&#39;: 11},
+ {&#39;timestamp&#39;: 1725830110895,
   &#39;operation&#39;: &#39;WRITE&#39;,
   &#39;operationParameters&#39;: {&#39;mode&#39;: &#39;Append&#39;},
   &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
-  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 266,
+  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 269,
    &#39;num_added_files&#39;: 1,
    &#39;num_added_rows&#39;: 143463,
    &#39;num_partitions&#39;: 0,
    &#39;num_removed_files&#39;: 0},
   &#39;version&#39;: 10},
- {&#39;timestamp&#39;: 1725821376560,
-  &#39;operation&#39;: &#39;WRITE&#39;,
-  &#39;operationParameters&#39;: {&#39;mode&#39;: &#39;Append&#39;},
-  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 256,
-   &#39;num_added_files&#39;: 1,
-   &#39;num_added_rows&#39;: 141901,
-   &#39;num_partitions&#39;: 0,
-   &#39;num_removed_files&#39;: 0},
-  &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
-  &#39;version&#39;: 9},
- {&#39;timestamp&#39;: 1725821349348,
+ {&#39;timestamp&#39;: 1725830083480,
   &#39;operation&#39;: &#39;WRITE&#39;,
   &#39;operationParameters&#39;: {&#39;mode&#39;: &#39;Append&#39;},
   &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
   &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 259,
    &#39;num_added_files&#39;: 1,
+   &#39;num_added_rows&#39;: 141901,
+   &#39;num_partitions&#39;: 0,
+   &#39;num_removed_files&#39;: 0},
+  &#39;version&#39;: 9},
+ {&#39;timestamp&#39;: 1725830056673,
+  &#39;operation&#39;: &#39;WRITE&#39;,
+  &#39;operationParameters&#39;: {&#39;mode&#39;: &#39;Append&#39;},
+  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 258,
+   &#39;num_added_files&#39;: 1,
    &#39;num_added_rows&#39;: 139680,
    &#39;num_partitions&#39;: 0,
    &#39;num_removed_files&#39;: 0},
+  &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
   &#39;version&#39;: 8},
- {&#39;timestamp&#39;: 1725821322761,
+ {&#39;timestamp&#39;: 1725830030232,
   &#39;operation&#39;: &#39;WRITE&#39;,
   &#39;operationParameters&#39;: {&#39;mode&#39;: &#39;Append&#39;},
-  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 241,
+  &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
+  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 244,
    &#39;num_added_files&#39;: 1,
    &#39;num_added_rows&#39;: 128920,
    &#39;num_partitions&#39;: 0,
    &#39;num_removed_files&#39;: 0},
-  &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
   &#39;version&#39;: 7},
- {&#39;timestamp&#39;: 1725821298121,
+ {&#39;timestamp&#39;: 1725830005855,
   &#39;operation&#39;: &#39;WRITE&#39;,
   &#39;operationParameters&#39;: {&#39;mode&#39;: &#39;Append&#39;},
   &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 238,
@@ -5431,66 +5894,115 @@ white-space: pre-wrap;
    &#39;num_removed_files&#39;: 0},
   &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
   &#39;version&#39;: 6},
- {&#39;timestamp&#39;: 1725821272451,
+ {&#39;timestamp&#39;: 1725829980922,
   &#39;operation&#39;: &#39;WRITE&#39;,
   &#39;operationParameters&#39;: {&#39;mode&#39;: &#39;Append&#39;},
-  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 230,
+  &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
+  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 227,
    &#39;num_added_files&#39;: 1,
    &#39;num_added_rows&#39;: 128166,
    &#39;num_partitions&#39;: 0,
    &#39;num_removed_files&#39;: 0},
-  &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
   &#39;version&#39;: 5},
- {&#39;timestamp&#39;: 1725821248089,
+ {&#39;timestamp&#39;: 1725829956726,
   &#39;operation&#39;: &#39;WRITE&#39;,
   &#39;operationParameters&#39;: {&#39;mode&#39;: &#39;Append&#39;},
-  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 221,
+  &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
+  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 223,
    &#39;num_added_files&#39;: 1,
    &#39;num_added_rows&#39;: 126934,
    &#39;num_partitions&#39;: 0,
    &#39;num_removed_files&#39;: 0},
-  &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
   &#39;version&#39;: 4},
- {&#39;timestamp&#39;: 1725821223955,
+ {&#39;timestamp&#39;: 1725829932609,
   &#39;operation&#39;: &#39;WRITE&#39;,
   &#39;operationParameters&#39;: {&#39;mode&#39;: &#39;Append&#39;},
-  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 215,
+  &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
+  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 216,
    &#39;num_added_files&#39;: 1,
    &#39;num_added_rows&#39;: 119630,
    &#39;num_partitions&#39;: 0,
    &#39;num_removed_files&#39;: 0},
-  &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
   &#39;version&#39;: 3},
- {&#39;timestamp&#39;: 1725821201382,
+ {&#39;timestamp&#39;: 1725829909939,
   &#39;operation&#39;: &#39;WRITE&#39;,
   &#39;operationParameters&#39;: {&#39;mode&#39;: &#39;Append&#39;},
-  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 188,
+  &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
+  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 196,
    &#39;num_added_files&#39;: 1,
    &#39;num_added_rows&#39;: 111186,
    &#39;num_partitions&#39;: 0,
    &#39;num_removed_files&#39;: 0},
-  &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
   &#39;version&#39;: 2},
- {&#39;timestamp&#39;: 1725821180308,
+ {&#39;timestamp&#39;: 1725829888762,
   &#39;operation&#39;: &#39;WRITE&#39;,
   &#39;operationParameters&#39;: {&#39;mode&#39;: &#39;Append&#39;},
   &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
-  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 183,
+  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 188,
    &#39;num_added_files&#39;: 1,
    &#39;num_added_rows&#39;: 108758,
    &#39;num_partitions&#39;: 0,
    &#39;num_removed_files&#39;: 0},
   &#39;version&#39;: 1},
- {&#39;timestamp&#39;: 1725821159949,
+ {&#39;timestamp&#39;: 1725829868162,
   &#39;operation&#39;: &#39;WRITE&#39;,
   &#39;operationParameters&#39;: {&#39;mode&#39;: &#39;Append&#39;},
-  &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
-  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 186,
+  &#39;operationMetrics&#39;: {&#39;execution_time_ms&#39;: 182,
    &#39;num_added_files&#39;: 1,
    &#39;num_added_rows&#39;: 105961,
    &#39;num_partitions&#39;: 0,
    &#39;num_removed_files&#39;: 0},
+  &#39;clientVersion&#39;: &#39;delta-rs.0.19.1&#39;,
   &#39;version&#39;: 0}]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> os <span class="im">import</span> system</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>system(<span class="st">&#39;tree /Users/guillaumepressiat/Documents/data/delta/rsa/rsa&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/Users/guillaumepressiat/Documents/data/delta/rsa/rsa
+├── _delta_log
+│   ├── 00000000000000000000.json
+│   ├── 00000000000000000001.json
+│   ├── 00000000000000000002.json
+│   ├── 00000000000000000003.json
+│   ├── 00000000000000000004.json
+│   ├── 00000000000000000005.json
+│   ├── 00000000000000000006.json
+│   ├── 00000000000000000007.json
+│   ├── 00000000000000000008.json
+│   ├── 00000000000000000009.json
+│   ├── 00000000000000000010.json
+│   ├── 00000000000000000011.json
+│   └── 00000000000000000012.json
+├── part-00000-7eb13227-ce82-497f-84fb-e767416c6016-c000.snappy.parquet
+├── part-00000-d831c120-2af5-4a49-9599-958e815b00ad-c000.snappy.parquet
+├── part-00001-0e6a7d99-4ffc-4775-8318-27178f63e39a-c000.snappy.parquet
+├── part-00001-2ac368f0-6f07-4766-a06b-aaa20ad1d6a7-c000.snappy.parquet
+├── part-00001-61fa5259-a82e-4256-b0eb-be26c19a1a29-c000.snappy.parquet
+├── part-00001-76418848-c673-403d-9a7a-c773c856ee3c-c000.snappy.parquet
+├── part-00001-77c542d0-ba31-4fdc-a30c-06c334fc3b5c-c000.snappy.parquet
+├── part-00001-7b0eb38f-e0be-4eb4-8138-3dbf30978d4c-c000.snappy.parquet
+├── part-00001-80b59950-28a5-4481-8b03-7dcbe88d4dae-c000.snappy.parquet
+├── part-00001-9f431d18-d08a-4d2d-8557-e9a979699a90-c000.snappy.parquet
+├── part-00001-ab213811-43bd-4a3a-9023-1c2912f038fa-c000.snappy.parquet
+├── part-00001-caf7bf87-5b80-4df2-8b1e-fac7b836578a-c000.snappy.parquet
+├── part-00001-d62c2a4e-4733-4754-982e-ef3cb1f7cb9b-c000.snappy.parquet
+├── part-00001-fb057c18-9f16-4761-8631-27bbae0ae08e-c000.snappy.parquet
+├── part-00002-779afa11-e83a-44dd-9c7d-12849d36d9f3-c000.snappy.parquet
+├── part-00003-fdd6d234-ab8e-434e-9ab2-7d693451dafd-c000.snappy.parquet
+├── part-00004-a206b937-6be0-4679-8a1e-918b49046047-c000.snappy.parquet
+├── part-00005-7557bc83-6022-484e-a4e5-f464160d49aa-c000.snappy.parquet
+├── part-00006-8c380bc5-f433-4e24-b713-f4ef67cbdf4d-c000.snappy.parquet
+├── part-00007-bc244fe1-7a8e-4278-9698-4e3af583f873-c000.snappy.parquet
+├── part-00008-b867aaf6-c4e9-417d-9d12-d0f0862c2bab-c000.snappy.parquet
+└── part-00009-a60554e9-66b9-465b-8b31-f55ab0e81a4d-c000.snappy.parquet
+
+2 directories, 35 files</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>0</code></pre>
 </div>
 </div>
 </section>
